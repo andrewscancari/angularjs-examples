@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngMessages']);
+var app = angular.module('app', ['ngRoute']);
 
 app.controller('MainController', function($scope, $route, $routeParams, $location) {
     $scope.$route = $route;
