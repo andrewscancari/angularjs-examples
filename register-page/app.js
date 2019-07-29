@@ -6,6 +6,25 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
     $scope.$routeParams = $routeParams;
 
     $scope.userdata = {};
+
+    $scope.mockUserdata = function() {
+      $scope.userdata = {
+        "cpf": "33470616833", 
+        "firstname": "Andrew", 
+        "lastname": "Scancari", 
+        "date_of_birth": new Date("1991-02-09T02:00:00.000Z"), 
+        "cep": "03306050", 
+        "street": "Rua Francisco Paulo", 
+        "street_number": "47", 
+        "district": "Cidade Mãe do Céu", 
+        "state": "São Paulo", 
+        "city": "São Paulo"
+      }
+    }
+
+    $scope.clearUserdata = function() {
+      $scope.userdata = {};
+    }
 });
 
 app.controller('LoginController', function ($scope, $routeParams) {
@@ -14,6 +33,11 @@ app.controller('LoginController', function ($scope, $routeParams) {
 
 app.controller('RegisterController', function ($scope, $routeParams) {
     $scope.params = $routeParams;
+
+    $(document).ready(function(){
+      $('.cpf').mask('000.000.000-00', {reverse: true});
+      $('.cep').mask('00000-000');
+    });
 });
 
 

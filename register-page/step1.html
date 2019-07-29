@@ -1,13 +1,31 @@
-<h1>Passo 1</h1>
+<h2>Passo 1</h2>
 
-<label for="register_cpf">CPF</label>
-<input ng-model="$parent.userdata.cpf" name="register_cpf" type="text" required><br>
+<div class="form-group">
+    <label for="register_cpf">CPF:</label>
+    <input ng-model="$parent.userdata.cpf" type="text" class="form-control cpf" id="register_cpf" required>
+</div>
 
-<label for="register_firstname">Nome</label>
-<input ng-model="$parent.userdata.firstname" name="register_firstname" type="text" required><br>
+<div class="form-group">
+    <label for="register_firstname">Nome:</label>
+    <input ng-model="$parent.userdata.firstname" type="text" class="form-control" id="register_firstname" required>
+</div>
 
-<label for="register_lastname">Sobrenome</label>
-<input ng-model="$parent.userdata.lastname" name="register_lastname" type="text" required><br>
+<div class="form-group">
+    <label for="register_lastname">Sobrenome:</label>
+    <input ng-model="$parent.userdata.lastname" type="text" class="form-control" id="register_lastname" required>
+</div>
 
-<label for="register_date_of_birth">Data de Nascimento</label>
-<input ng-model="$parent.userdata.date_of_birth" name="register_date_of_birth" type="date" required>
+<div class="form-group">
+    <label for="register_date_of_birth">Data de Nascimento</label>
+    <input ng-model="$parent.userdata.date_of_birth" id="register_date_of_birth" type="date" class="form-control" required>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col">
+        <a class="btn float-left" href="index.html#!/login"><i class="fas fa-arrow-left"></i> Voltar</a> 
+    </div>
+    <div class="col">
+        <a class="btn float-right" href="index.html#!/register/step2">Proximo <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>

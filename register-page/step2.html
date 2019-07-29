@@ -1,19 +1,41 @@
-<h1>Passo 2</h1>
+<h2>Passo 2</h2>
 
-<label for="register_cep">CEP</label>
-<input ng-model="$parent.userdata.cep" name="register_cep" type="text" required><br>
+<div class="form-group">
+    <label for="register_cep">CEP</label>
+    <input ng-model="$parent.userdata.cep" id="register_cep" class="form-control cep" type="text" required>
+</div>
 
-<label for="register_street">Rua</label>
-<input ng-model="$parent.userdata.street" name="register_street" type="text" required><br>
+<div class="form-group">
+    <label for="register_street">Rua</label>
+    <input ng-model="$parent.userdata.street" id="register_street" class="form-control" type="text" required>
+</div>
 
-<label for="register_street_number">Numero</label>
-<input ng-model="$parent.userdata.street_number" name="register_street_number" type="text" required><br>
+<div class="form-group">
+    <label for="register_street_number">Numero</label>
+    <input ng-model="$parent.userdata.street_number" id="register_street_number" class="form-control" type="text" required>
+</div>
 
-<label for="register_district">Bairro</label>
-<input ng-model="$parent.userdata.district" name="register_district" type="text" required><br>
+<div class="form-group">
+    <label for="register_district">Bairro</label>
+    <input ng-model="$parent.userdata.district" id="register_district" class="form-control" type="text" required>
+</div>
 
-<label for="register_state">Estado</label>
-<input ng-model="$parent.userdata.state" name="register_state" type="text" required><br>
+<div class="form-group">
+    <label for="register_state">Estado</label>
+    <input ng-model="$parent.userdata.state" id="register_state" class="form-control" type="text" required>
+</div>
 
-<label for="register_city">Cidade</label>
-<input ng-model="$parent.userdata.city" name="register_city" type="text" required>
+<div class="form-group">
+    <label for="register_city">Cidade</label>
+    <input ng-model="$parent.userdata.city" id="register_city" class="form-control" type="text" required>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col">
+        <a class="btn float-left" href="index.html#!/register/step1"><i class="fas fa-arrow-left"></i> Voltar</a> 
+    </div>
+    <div class="col">
+        <a class="btn float-right" href="index.html#!/register/step3">Proximo <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
