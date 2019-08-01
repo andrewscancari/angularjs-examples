@@ -10,12 +10,12 @@
     <!-- If you put this inside a css file will do loader just shows when css file is fully loaded -->
     <style>
         .loader {
-            border: 16px solid #f3f3f3; /* Light grey */
-            border-top: 16px solid #3498db; /* Blue */
+            border: 6px solid #f3f3f3; /* Light grey */
+            border-top: 6px solid #3498db; /* Blue */
             border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
@@ -23,51 +23,22 @@
             100% { transform: rotate(360deg); }
         }
     </style>
+
+    <script>
+        window.onload = function() {
+            $('#rootElement').hide(); // This is need to do transiction effect on loading
+            $('#rootElement').load('login-page.html', function() {
+                $('#welcomeLoader').hide();
+                $('#rootElement').fadeIn(200);
+            });
+        };
+    </script>
 </head>
 <body>
     <div id="welcomeLoader" class="loader"></div>
-    <div id="rootElement" include-html="login-page.html"></div>
-
-    <script>
-        function includeHTML() {
-            var z, i, elmnt, file, xhttp;
-            /* Loop through a collection of all HTML elements: */
-            z = document.getElementsByTagName("*");
-            for (i = 0; i < z.length; i++) {
-                elmnt = z[i];
-                /*search for elements with a certain atrribute:*/
-                file = elmnt.getAttribute("include-html");
-                if (file) {
-                    /* Make an HTTP request using the attribute value as the file name: */
-                    xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4) {
-                            if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-                            if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
-                            /* Remove the attribute, and call this function once more: */
-                            elmnt.removeAttribute("include-html");
-                            includeHTML();
-                        }
-                    }
-                    xhttp.open("GET", file, true);
-                    xhttp.send();
-                    /* Exit the function: */
-                    return;
-                }
-            }
-        }
-        
-
-        // Hide welcome loading and show page content
-        var welcomeLoader = document.getElementById('welcomeLoader');
-        welcomeLoader.style.display = 'none';
-        welcomeLoader.style.visibility = 'hidden';
-
-        includeHTML();
-
-        var rootElement = document.getElementById('rootElement');
-        rootElement.style.display = '';
-        rootElement.style.visibility = '';
-    </script>
+    <div id="rootElement"></div>
+    
+    <!-- jQuery -->
+    <script src="js/jquery/jquery-3.4.1.min.js"></script>
 </body>
 </html>
