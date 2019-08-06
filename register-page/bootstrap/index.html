@@ -6,10 +6,12 @@
     <meta http-equiv="content-language" content="pt-br" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AngularJS Example</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     
     <style>
+        body {
+            margin: 0;
+        }
+
         .loader {
             border: 6px solid #f3f3f3; /* Light grey */
             border-top: 6px solid #3498db; /* Blue */
@@ -41,32 +43,6 @@
         }
     </style>
 
-    <!-- AngularJS Framework -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
-    
-    <!-- AngularJS Route Plugin - Single Page Application -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
-    
-    <!-- Bootstrap requires -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <!-- JQuery Mask Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-
-    <!-- AngularJS Custom APP -->
-    <script src="app.js"></script>
-
-    <!-- Alertify Javascript -->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
-
-    <!-- Alertify CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
-    
-    <!-- Alertify Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css"/>
-
     <script>
         window.onload = function() {
             $('#screenLoader').fadeOut(200);
@@ -78,24 +54,7 @@
     <div id="screenLoader" class="loaderBackground">
         <div class="loader"></div>
     </div>
-
-    <script type="text/ng-template" id="login.html">
-        <h2>LOGIN</h2>
-        <form>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input ng-model="username"type="email" class="form-control" id="email" placeholder="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input ng-model="password" type="password" class="form-control" id="pwd" placeholder="password" name="pswd">
-            </div>
-            <button type="submit" class="btn btn-primary">Entrar</button>
-        </form>
-        <br><br>
-        <a href="index.html#!/register/step1">Cadastra-se ;)</a>
-    </script>
-
+    
     <div id="rootElement" ng-controller="MainController" style="display: none;">
             <div class="container" style="max-width: 500px;">
                 <ul class="nav">
@@ -117,18 +76,53 @@
                 </ul>
                 <hr />
                 <form name="formRegister">
-                    <div ng-view></div>
+                    <div ng-view ng-show="statechange"></div>
+                    <div ng-show="!statechange" show-during-resolve>
+                        <div class="loader"></div>
+                    </div>
                 </form>
             </div>
             
             <br>
-            <hr />
-            <!-- <pre>{{userdata}}</pre>
+            <!-- <hr />
+            <pre>{{userdata}}</pre>
             <pre>$location.path() = {{$location.path()}}</pre>
             <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
             <pre>$route.current.params = {{$route.current.params}}</pre>
             <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
             <pre>$routeParams = {{$routeParams}}</pre> -->
-    </div> 
+    </div>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- Alertify CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
+     
+    <!-- Alertify Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css"/>
+
+     <!-- AngularJS Framework -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+    
+     <!-- AngularJS Route Plugin - Single Page Application -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
+     
+     <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     
+     <!-- Bootstrap requires -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+     <!-- JQuery Mask Plugin -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+ 
+     <!-- AngularJS Custom APP -->
+     <script src="app.js"></script>
+ 
+     <!-- Alertify Javascript -->
+     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
 </body>
 </html>

@@ -117,7 +117,6 @@ app.controller('MainController', ($scope, $route, $routeParams, $location, Custo
           $scope.userdata.city = success.data.localidade;
           $scope.userdata.state = success.data.uf;
       }, error => {
-        console.log(arguments);
         console.error('fillAddressByCep', error);
       });
     }
@@ -127,17 +126,21 @@ app.controller('MainController', ($scope, $route, $routeParams, $location, Custo
     }
 });
 
-app.controller('LoginController', function ($scope, $routeParams) {
+app.controller('LoginController', function ($rootScope, $scope, $routeParams) {
   $scope.params = $routeParams;
+
+  $rootScope.statechange = true;
 });
 
-app.controller('RegisterController', function ($scope, $routeParams) {
+app.controller('RegisterController', function ($rootScope, $scope, $routeParams) {
     $scope.params = $routeParams;
     
     $(document).ready(function(){
       $('.cpf').mask('000.000.000-00', {reverse: true});
       $('.cep').mask('00000-000');
     });
+
+    $rootScope.statechange = true;
 });
 
 
@@ -145,22 +148,22 @@ app.config(function($routeProvider) {
     $routeProvider
 
     .when('/login', {
-        templateUrl : 'login.html',
+        templateUrl : 'templates/login.html',
         controller  : 'LoginController'
     })
 
     .when('/register/step1', {
-      templateUrl : 'step1.html',
+      templateUrl : 'templates/step1.html',
       controller  : 'RegisterController'
     })
   
     .when('/register/step2', {
-      templateUrl : 'step2.html',
+      templateUrl : 'templates/step2.html',
       controller  : 'RegisterController'
     })
   
     .when('/register/step3', {
-      templateUrl : 'step3.html',
+      templateUrl : 'templates/step3.html',
       controller  : 'RegisterController'
     })
   
@@ -168,4 +171,21 @@ app.config(function($routeProvider) {
       window.hash = "";
       window.location = 'index.html#!/login';
     }});
+});
+
+app.directive('showDuringResolve', function($rootScope) {
+  return {
+    link: function (scope, element) {
+      element.addClass('ng-hide');
+      
+      $rootScope.statechange = true;
+
+      var unregister = $rootScope.$on('$routeChangeStart', function () {
+        element.removeClass('ng-hide');
+        $rootScope.statechange = false;
+      });
+
+      scope.$on('$destroy', unregister);
+    }
+  };
 });
