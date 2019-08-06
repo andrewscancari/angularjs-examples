@@ -5,10 +5,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-language" content="pt-br" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>AngularJS Example</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     
+    <style>
+        .loader {
+            border: 6px solid #f3f3f3; /* Light grey */
+            border-top: 6px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            box-sizing: border-box;
+
+            position: fixed;
+            top: 45%;
+            left: 45%;
+            transform: translate(-50%, -50%);
+            transform: -webkit-translate(-50%, -50%);
+            transform: -moz-translate(-50%, -50%);
+            transform: -ms-translate(-50%, -50%);
+        }
+        .loaderBackground {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
     <!-- AngularJS Framework -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
     
@@ -25,8 +57,28 @@
 
     <!-- AngularJS Custom APP -->
     <script src="app.js"></script>
+
+    <!-- Alertify Javascript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+
+    <!-- Alertify CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
+    
+    <!-- Alertify Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css"/>
+
+    <script>
+        window.onload = function() {
+            $('#screenLoader').fadeOut(200);
+            $('#rootElement').fadeIn(200);
+        };
+    </script>
 </head>
 <body ng-app="app">
+    <div id="screenLoader" class="loaderBackground">
+        <div class="loader"></div>
+    </div>
+
     <script type="text/ng-template" id="login.html">
         <h2>LOGIN</h2>
         <form>
@@ -44,7 +96,7 @@
         <a href="index.html#!/register/step1">Cadastra-se ;)</a>
     </script>
 
-    <div ng-controller="MainController">
+    <div id="rootElement" ng-controller="MainController" style="display: none;">
             <div class="container" style="max-width: 500px;">
                 <ul class="nav">
                     <li class="nav-item">
