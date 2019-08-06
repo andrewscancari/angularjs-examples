@@ -34,15 +34,18 @@ app.factory("CustomUtils", ($q, $http) => {
 			url 	       : url,
 			data         : data
 		}).then(responseSuccess => {
-			service.showLoader(false);
+      service.showLoader(false);
 
-			return responseSuccess;
-		}, responseError => {
-			service.showLoader(false);
-			console.error(responseError.statusText);
-		});
+      return responseSuccess;
+    }).catch(responseError => {
+      service.showLoader(false);
 
-		return promise;
+      console.error(responseError);
+
+      return $q.reject(responseError);
+    });
+
+    return promise;
   }
   
   service.getAddressByCPF = cep => {
